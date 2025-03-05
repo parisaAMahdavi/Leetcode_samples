@@ -51,10 +51,10 @@ class LinkedList:
         return self
 
 
-linked_list = LinkedList()
-linked_list.generate(10, 0, 99)
-print(linked_list)
-print(len(linked_list))
+# linked_list = LinkedList()
+# linked_list.generate(10, 0, 99)
+# print(linked_list)
+# print(len(linked_list))
 
 
 
