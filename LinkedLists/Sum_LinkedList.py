@@ -56,15 +56,3 @@ def sum_linkedlist(l1,l2):
         l3.add(sum%10)
         carry = sum//10
     return l3
-
-
-l1 = LinkedList()
-l1.generate(4,0,9)
-print(l1)
-
-l2 = LinkedList()
-l2.generate(3,0,9)
-print(l2)
-
-a = sum_linkedlist(l1,l2)
-print(a)
