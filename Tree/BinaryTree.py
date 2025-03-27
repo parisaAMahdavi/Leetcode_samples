@@ -21,8 +21,15 @@ def inOrderTraversal(rootNode):
     if rootNode is None:
         return None
     inOrderTraversal(rootNode.leftchild)
-    # print(rootNode.data)
+    print(rootNode.data)
     inOrderTraversal(rootNode.rightchild)   
 
-inOrderTraversal(BT)
+def postOrderTraversal(rootNode):
+    if rootNode is None:
+        return None
+    postOrderTraversal(rootNode.leftchild)
+    postOrderTraversal(rootNode.rightchild)
+    print(rootNode.data)
+
+postOrderTraversal(BT)
 
