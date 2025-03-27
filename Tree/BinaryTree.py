@@ -17,7 +17,12 @@ def preOrderTraversal(rootNode): #time complexity O(n)
     preOrderTraversal(rootNode.leftchild)
     preOrderTraversal(rootNode.rightchild)
 
-preOrderTraversal(BT)
+def inOrderTraversal(rootNode):
+    if rootNode is None:
+        return None
+    inOrderTraversal(rootNode.leftchild)
+    # print(rootNode.data)
+    inOrderTraversal(rootNode.rightchild)   
 
-
+inOrderTraversal(BT)
 
