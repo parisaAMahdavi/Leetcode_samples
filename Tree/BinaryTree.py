@@ -46,6 +46,10 @@ def postOrderTraversal(rootNode):
     print(rootNode.data)
 
 def levelOrderTraversal(rootNode):
+    """
+    For level order traversal, time and space complexity is O(n) because we are using a queue to store the nodes
+    and we are visiting each node once.
+    """
     if rootNode is None:
         return None
     queue = Queue()
@@ -58,7 +62,25 @@ def levelOrderTraversal(rootNode):
             queue.enqueue(root.val.leftchild)
         if root.val.rightchild is not None:
             queue.enqueue(root.val.rightchild)
+def searchBT(rootNode, value):
+    """
+    For searching a value in the binary tree, we will use the level order traversal as it is based on queue"
+    """
+    if rootNode is None:
+        return None
+    queue = Queue()
+    queue.enqueue(rootNode)
+    while not(queue.isEmpty()):
+        root = queue.dequeue()
+        if root.val.data == value:
+            return root.val.data
+        if root.val.leftchild is not None:
+            queue.enqueue(root.val.leftchild)
+        if root.val.rightchild is not None:
+            queue.enqueue(root.val.rightchild)
+    return "Not Found"
+    
 
 
-levelOrderTraversal(BT)
+print(searchBT(BT, "orange"))
 
