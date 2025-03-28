@@ -14,14 +14,14 @@ leftchild = TreeNode("Hot")
 rightchild = TreeNode("Cold")
 leftchild.leftchild = TreeNode("tea")
 leftchild.rightchild = TreeNode("coffee")
-rightchild.leftchild = TreeNode("cola")
-rightchild.rightchild = TreeNode("juice")
+# rightchild.leftchild = TreeNode("cola")
+# rightchild.rightchild = TreeNode("juice")
 BT.leftchild = leftchild
 BT.rightchild = rightchild
 BT.leftchild.leftchild = leftchild.leftchild
 BT.leftchild.rightchild = leftchild.rightchild
-BT.rightchild.leftchild = rightchild.leftchild
-BT.rightchild.rightchild = rightchild.rightchild
+# BT.rightchild.leftchild = rightchild.leftchild
+# BT.rightchild.rightchild = rightchild.rightchild
 
 
 def preOrderTraversal(rootNode): #time complexity O(n)
@@ -80,7 +80,74 @@ def searchBT(rootNode, value):
             queue.enqueue(root.val.rightchild)
     return "Not Found"
     
-
-
-print(searchBT(BT, "orange"))
+def insertNodeBT(rootNode, value):
+    if rootNode is None:
+        rootNode = value
+    else:
+        queue = Queue()
+        queue.enqueue(rootNode)
+        while not(queue.isEmpty()):
+            root = queue.dequeue()
+            if root.val.leftchild is not None:
+                queue.enqueue(root.val.leftchild)
+            else:
+                root.val.leftchild = value
+                return "inserted new node"
+            if root.val.rightchild is not None:
+                queue.enqueue(root.val.rightchild)
+            else:
+                root.val.rightchild = value
+                return "inserted new node"
+def findDeepestNode(rootNode):
+    if rootNode is None:
+        return None
+    queue = Queue()
+    queue.enqueue(rootNode)
+    while not(queue.isEmpty()):
+        root = queue.dequeue()
+        if root.val.leftchild is not None:
+            queue.enqueue(root.val.leftchild)
+        if root.val.rightchild is not None:
+            queue.enqueue(root.val.rightchild)
+    return root.val
+def deleteDeepestNode(rootNode, dNode):
+    if rootNode is None:
+        return 
+    queue = Queue()
+    queue.enqueue(rootNode)
+    while not(queue.isEmpty()):
+        root = queue.dequeue()
+        if root.val is dNode:
+            root.val = None
+            return "deleted the deepest node"
+        if root.val.rightchild:
+            if root.val.rightchild is dNode:
+                root.val.rightchild = None
+                return "deleted the deepest node"
+            else:
+                queue.enqueue(root.val.rightchild)
+        if root.val.leftchild:
+            if root.val.leftchild is dNode:
+                root.val.leftchild = None
+                return "deleted the deepest node"
+            else:
+                queue.enqueue(root.val.leftchild)
+def deleteNodeBT(rootNode, value):
+    if rootNode is None:
+        return None
+    queue = Queue()
+    queue.enqueue(rootNode)
+    while not(queue.isEmpty()):
+        root = queue.dequeue()
+        if root.val.data == value:
+            dNode = findDeepestNode(rootNode)
+            root.val.data = dNode.data
+            deleteDeepestNode(rootNode, dNode)
+            return "deleted the node"
+        else:
+            if root.val.leftchild is not None:          
+                queue.enqueue(root.val.leftchild)
+            if root.val.rightchild is not None:
+                queue.enqueue(root.val.rightchild)
+    return 'Not Found'
 
